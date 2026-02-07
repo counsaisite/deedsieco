@@ -1,0 +1,21 @@
+{
+  "indexes": [
+    {
+      "collectionGroup": "deeds",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "townId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    },
+    {
+      "collectionGroup": "deeds",
+      "queryScope": "COLLECTION",
+      "fields": [
+        { "fieldPath": "creatorId", "order": "ASCENDING" },
+        { "fieldPath": "createdAt", "order": "DESCENDING" }
+      ]
+    }
+  ],
+  "fieldOverrides": []
+}

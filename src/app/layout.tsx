@@ -1,6 +1,10 @@
 import { headers } from 'next/headers';
 import './globals.css';
 
+export const metadata = {
+  icons: { icon: '/logo.png' },
+};
+
 export default async function RootLayout({
   children,
 }: {

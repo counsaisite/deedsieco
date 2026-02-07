@@ -1,7 +1,9 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { routing } from '@/i18n/routing';
+import ProfileView from '@/components/ProfileView';
+import Footer from '@/components/Footer';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -29,11 +31,9 @@ export default async function ProfilePage({ params }: Props) {
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
           Profile
         </h2>
-        <div className="text-center py-12 text-slate-500 dark:text-slate-400">
-          <p className="mb-4">Tier badge and stats will appear here.</p>
-          <p className="text-sm">First Spark → Eternal Deedsie</p>
-        </div>
+        <ProfileView />
       </main>
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { routing } from '@/i18n/routing';
 import LocaleSwitcher from '@/components/LocaleSwitcher';
 import HeroAuthButtons from '@/components/HeroAuthButtons';
+import Footer from '@/components/Footer';
 
 const TOPIC_KEYS = [
   'nearby',
@@ -135,23 +136,7 @@ export default async function HomePage({ params }: Props) {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="border-t border-slate-200 dark:border-slate-700/50 py-6 sm:py-8 px-4 sm:px-6">
-        <div className="max-w-6xl mx-auto flex flex-wrap justify-center gap-4 sm:gap-6 text-sm text-slate-500">
-          <Link href="/about" className="hover:text-slate-400 py-2">
-            {t('about')}
-          </Link>
-          <Link href="/help" className="hover:text-slate-400 py-2">
-            {t('help')}
-          </Link>
-          <Link href="/terms" className="hover:text-slate-400 py-2">
-            {t('terms')}
-          </Link>
-          <Link href="/privacy" className="hover:text-slate-400 py-2">
-            {t('privacy')}
-          </Link>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

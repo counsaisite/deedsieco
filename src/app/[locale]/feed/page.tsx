@@ -1,7 +1,9 @@
-import { getTranslations, setRequestLocale } from 'next-intl/server';
+import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { routing } from '@/i18n/routing';
+import DeedFeed from '@/components/DeedFeed';
+import Footer from '@/components/Footer';
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -12,7 +14,6 @@ export function generateStaticParams() {
 export default async function FeedPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const t = await getTranslations('HomePage');
 
   return (
     <div className="min-h-screen flex flex-col bg-slate-50 dark:bg-deedsie-navy">
@@ -30,11 +31,9 @@ export default async function FeedPage({ params }: Props) {
         <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-6">
           Your feed
         </h2>
-        <div className="text-center py-12 text-slate-500 dark:text-slate-400">
-          <p className="mb-4">Local deeds will appear here.</p>
-          <p className="text-sm">Feed + post deed coming next.</p>
-        </div>
+        <DeedFeed />
       </main>
+      <Footer />
     </div>
   );
 }

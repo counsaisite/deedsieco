@@ -14,6 +14,7 @@ export default function HeroAuthButtons() {
   const [loading, setLoading] = useState(false);
 
   async function handleGoogle() {
+    if (!auth) return;
     setLoading(true);
     try {
       await signInWithPopup(auth, new GoogleAuthProvider());
@@ -27,7 +28,7 @@ export default function HeroAuthButtons() {
     <div className="space-y-3 sm:space-y-4">
       <button
         onClick={handleGoogle}
-        disabled={loading}
+        disabled={loading || !auth}
         className="w-full flex items-center justify-center gap-3 px-6 py-3.5 sm:py-4 rounded-lg bg-blue-600 hover:bg-blue-500 disabled:opacity-50 text-white font-medium transition min-h-[48px]"
       >
         <svg className="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="currentColor">

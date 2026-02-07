@@ -16,6 +16,10 @@ export default function SignInButtons() {
   const [loading, setLoading] = useState(false);
 
   async function handleGoogleSignIn() {
+    if (!auth) {
+      setError('Sign-in is not configured. Add Firebase env vars.');
+      return;
+    }
     setLoading(true);
     setError('');
     try {
@@ -31,6 +35,10 @@ export default function SignInButtons() {
 
   async function handleEmailSignIn(e: React.FormEvent) {
     e.preventDefault();
+    if (!auth) {
+      setError('Sign-in is not configured. Add Firebase env vars.');
+      return;
+    }
     setLoading(true);
     setError('');
     try {

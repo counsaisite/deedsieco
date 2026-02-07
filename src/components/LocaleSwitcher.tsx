@@ -24,7 +24,7 @@ export default function LocaleSwitcher() {
     <select
       value={locale}
       onChange={(e) => router.replace(pathname, { locale: e.target.value })}
-      className="bg-transparent border border-slate-300 dark:border-slate-600 rounded px-2 py-1.5 text-sm text-slate-700 dark:text-slate-300 min-h-[44px]"
+      className="bg-transparent border-0 border-b border-slate-400 dark:border-slate-500 rounded-none px-1 py-0.5 text-sm text-slate-700 dark:text-slate-300 cursor-pointer focus:ring-0 focus:outline-none"
       aria-label="Select language"
     >
       {routing.locales.map((loc) => (
