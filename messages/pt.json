@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "Veja a bondade acontecendo ao seu redor.",
+    "subheadline": "Junte-se à sua comunidade. Compartilhe uma Boa Ação. Faça o mundo mais brilhante.",
+    "continueGoogle": "Continuar com Google",
+    "continueApple": "Continuar com Apple",
+    "signInEmail": "Entrar com e-mail",
+    "discoveryTitle": "Explore a bondade na sua comunidade",
+    "socialProof": "{count} Boas Ações compartilhadas esta semana em {towns} cidades.",
+    "ctaLine1": "A bondade começa com uma pequena Boa Ação.",
+    "ctaLine2": "Junte-se ao Deedsie hoje.",
+    "createAccount": "Crie sua conta gratuita",
+    "joinNow": "Criar conta",
+    "signIn": "Entrar",
+    "terms": "Termos de Serviço",
+    "privacy": "Política de Privacidade",
+    "cookies": "Política de Cookies",
+    "agreement": "Ao clicar em Continuar para criar conta ou entrar, você concorda com os <terms>Termos de Serviço</terms>, <privacy>Política de Privacidade</privacy> e <cookies>Política de Cookies</cookies> do Deedsie.",
+    "about": "Sobre",
+    "help": "Central de Ajuda",
+    "communityWarmth": "Calor da comunidade",
+    "illustrationComing": "Ilustração em breve"
+  },
+  "Topics": {
+    "nearby": "Boa Ações próximas",
+    "volunteering": "Voluntariado",
+    "helpingNeighbors": "Ajudando vizinhos",
+    "gratitude": "Gratidão",
+    "givingBack": "Retribuir",
+    "faithHope": "Fé e esperança",
+    "randomKindness": "Bondade aleatória"
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "شاهد اللطف يحدث من حولك.",
+    "subheadline": "انضم إلى مجتمعك. شارك عملاً صالحاً. اجعل العالم أكثر إشراقاً.",
+    "continueGoogle": "المتابعة مع Google",
+    "continueApple": "المتابعة مع Apple",
+    "signInEmail": "تسجيل الدخول بالبريد الإلكتروني",
+    "discoveryTitle": "استكشف اللطف في مجتمعك",
+    "socialProof": "{count} أعمال صالحة تم مشاركتها هذا الأسبوع في {towns} مدن.",
+    "ctaLine1": "اللطف يبدأ بعمل صالح صغير واحد.",
+    "ctaLine2": "انضم إلى Deedsie اليوم.",
+    "createAccount": "إنشاء حسابك المجاني",
+    "joinNow": "انضم الآن",
+    "signIn": "تسجيل الدخول",
+    "terms": "شروط الخدمة",
+    "privacy": "سياسة الخصوصية",
+    "cookies": "سياسة ملفات تعريف الارتباط",
+    "agreement": "بالنقر على المتابعة للانضمام أو تسجيل الدخول، فإنك توافق على <terms>شروط الخدمة</terms> و<privacy>سياسة الخصوصية</privacy> و<cookies>سياسة ملفات تعريف الارتباط</cookies> الخاصة بـ Deedsie.",
+    "about": "نبذة",
+    "help": "مركز المساعدة",
+    "communityWarmth": "دفء المجتمع",
+    "illustrationComing": "الرسم قريباً"
+  },
+  "Topics": {
+    "nearby": "أعمال صالحة قريبة",
+    "volunteering": "التطوع",
+    "helpingNeighbors": "مساعدة الجيران",
+    "gratitude": "الامتنان",
+    "givingBack": "رد الجميل",
+    "faithHope": "الإيمان والأمل",
+    "randomKindness": "لطف عشوائي"
+  }
+}

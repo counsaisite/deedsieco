@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "Découvrez la bienveillance autour de vous.",
+    "subheadline": "Rejoignez votre communauté. Partagez une Bonne Action. Rendez le monde plus lumineux.",
+    "continueGoogle": "Continuer avec Google",
+    "continueApple": "Continuer avec Apple",
+    "signInEmail": "Se connecter avec e-mail",
+    "discoveryTitle": "Explorez la bienveillance dans votre communauté",
+    "socialProof": "{count} Bonnes Actions partagées cette semaine dans {towns} villes.",
+    "ctaLine1": "La bienveillance commence par une petite Bonne Action.",
+    "ctaLine2": "Rejoignez Deedsie aujourd'hui.",
+    "createAccount": "Créez votre compte gratuit",
+    "joinNow": "Rejoindre",
+    "signIn": "Se connecter",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité",
+    "cookies": "Politique des cookies",
+    "agreement": "En cliquant sur Continuer pour rejoindre ou vous connecter, vous acceptez les <terms>Conditions d'utilisation</terms>, <privacy>Politique de confidentialité</privacy> et <cookies>Politique des cookies</cookies> de Deedsie.",
+    "about": "À propos",
+    "help": "Centre d'aide",
+    "communityWarmth": "Chaleur communautaire",
+    "illustrationComing": "Illustration à venir"
+  },
+  "Topics": {
+    "nearby": "Bonnes Actions à proximité",
+    "volunteering": "Bénévolat",
+    "helpingNeighbors": "Aider les voisins",
+    "gratitude": "Gratitude",
+    "givingBack": "Rendre",
+    "faithHope": "Foi et espérance",
+    "randomKindness": "Bienveillance aléatoire"
+  }
+}

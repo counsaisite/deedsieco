@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "See the kindness happening around you.",
+    "subheadline": "Join your town. Share a Deed. Make the world brighter.",
+    "continueGoogle": "Continue with Google",
+    "continueApple": "Continue with Apple",
+    "signInEmail": "Sign in with email",
+    "discoveryTitle": "Explore kindness in your community",
+    "socialProof": "{count} Deeds shared this week across {towns} towns.",
+    "ctaLine1": "Kindness starts with one small Deed.",
+    "ctaLine2": "Join Deedsie today.",
+    "createAccount": "Create your free account",
+    "joinNow": "Join now",
+    "signIn": "Sign in",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "agreement": "By clicking Continue to join or sign in, you agree to Deedsie's <terms>Terms of Service</terms>, <privacy>Privacy Policy</privacy>, and <cookies>Cookie Policy</cookies>.",
+    "about": "About",
+    "help": "Help Center",
+    "communityWarmth": "Community warmth",
+    "illustrationComing": "Illustration coming soon"
+  },
+  "Topics": {
+    "nearby": "Nearby Deeds",
+    "volunteering": "Volunteering",
+    "helpingNeighbors": "Helping Neighbors",
+    "gratitude": "Gratitude",
+    "givingBack": "Giving Back",
+    "faithHope": "Faith & Hope",
+    "randomKindness": "Random Kindness"
+  }
+}

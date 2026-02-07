@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "看看你身边的善举。",
+    "subheadline": "加入你的社区。分享善行。让世界更美好。",
+    "continueGoogle": "使用 Google 继续",
+    "continueApple": "使用 Apple 继续",
+    "signInEmail": "使用邮箱登录",
+    "discoveryTitle": "探索你社区的善举",
+    "socialProof": "本周在 {towns} 个城镇分享了 {count} 个善行。",
+    "ctaLine1": "善意从一件小小的善行开始。",
+    "ctaLine2": "今天就加入 Deedsie。",
+    "createAccount": "创建免费账户",
+    "joinNow": "立即加入",
+    "signIn": "登录",
+    "terms": "服务条款",
+    "privacy": "隐私政策",
+    "cookies": "Cookie 政策",
+    "agreement": "点击继续或登录即表示您同意 Deedsie 的<terms>服务条款</terms>、<privacy>隐私政策</privacy>和<cookies>Cookie 政策</cookies>。",
+    "about": "关于",
+    "help": "帮助中心",
+    "communityWarmth": "社区温暖",
+    "illustrationComing": "插图即将推出"
+  },
+  "Topics": {
+    "nearby": "附近的善行",
+    "volunteering": "志愿服务",
+    "helpingNeighbors": "帮助邻居",
+    "gratitude": "感恩",
+    "givingBack": "回馈",
+    "faithHope": "信仰与希望",
+    "randomKindness": "随机善举"
+  }
+}

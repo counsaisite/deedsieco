@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "Sieh die Güte um dich herum.",
+    "subheadline": "Tritt deiner Gemeinde bei. Teile eine gute Tat. Mach die Welt heller.",
+    "continueGoogle": "Mit Google fortfahren",
+    "continueApple": "Mit Apple fortfahren",
+    "signInEmail": "Mit E-Mail anmelden",
+    "discoveryTitle": "Entdecke die Güte in deiner Gemeinde",
+    "socialProof": "{count} gute Taten diese Woche in {towns} Städten geteilt.",
+    "ctaLine1": "Güte beginnt mit einer kleinen guten Tat.",
+    "ctaLine2": "Tritt heute Deedsie bei.",
+    "createAccount": "Erstelle dein kostenloses Konto",
+    "joinNow": "Jetzt beitreten",
+    "signIn": "Anmelden",
+    "terms": "Nutzungsbedingungen",
+    "privacy": "Datenschutzrichtlinie",
+    "cookies": "Cookie-Richtlinie",
+    "agreement": "Durch Klicken auf Fortfahren zum Beitritt oder Anmelden stimmst du den <terms>Nutzungsbedingungen</terms>, <privacy>Datenschutzrichtlinie</privacy> und <cookies>Cookie-Richtlinie</cookies> von Deedsie zu.",
+    "about": "Über uns",
+    "help": "Hilfezentrum",
+    "communityWarmth": "Gemeinschaftswärme",
+    "illustrationComing": "Illustration folgt in Kürze"
+  },
+  "Topics": {
+    "nearby": "Gute Taten in der Nähe",
+    "volunteering": "Freiwilligenarbeit",
+    "helpingNeighbors": "Nachbarn helfen",
+    "gratitude": "Dankbarkeit",
+    "givingBack": "Zurückgeben",
+    "faithHope": "Glaube und Hoffnung",
+    "randomKindness": "Zufällige Güte"
+  }
+}

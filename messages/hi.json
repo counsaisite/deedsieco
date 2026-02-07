@@ -1,0 +1,33 @@
+{
+  "HomePage": {
+    "headline": "अपने आसपास हो रही दयालुता देखें।",
+    "subheadline": "अपने शहर में शामिल हों। एक अच्छा काम साझा करें। दुनिया को उज brighter बनाएं।",
+    "continueGoogle": "Google से जारी रखें",
+    "continueApple": "Apple से जारी रखें",
+    "signInEmail": "ईमेल से साइन इन करें",
+    "discoveryTitle": "अपने समुदाय में दयालुता का अन्वेषण करें",
+    "socialProof": "इस सप्ताह {towns} शहरों में {count} अच्छे काम साझा किए गए।",
+    "ctaLine1": "दयालुता एक छोटे अच्छे काम से शुरू होती है।",
+    "ctaLine2": "आज ही Deedsie में शामिल हों।",
+    "createAccount": "अपना मुफ्त खाता बनाएं",
+    "joinNow": "अभी शामिल हों",
+    "signIn": "साइन इन",
+    "terms": "सेवा की शर्तें",
+    "privacy": "गोपनीयता नीति",
+    "cookies": "कुकी नीति",
+    "agreement": "जारी रखने या साइन इन करने के लिए क्लिक करके, आप Deedsie के <terms>सेवा की शर्तें</terms>, <privacy>गोपनीयता नीति</privacy> और <cookies>कुकी नीति</cookies> से सहमत हैं।",
+    "about": "हमारे बारे में",
+    "help": "सहायता केंद्र",
+    "communityWarmth": "समुदाय की गर्मजोशी",
+    "illustrationComing": "चित्र जल्द आ रहा है"
+  },
+  "Topics": {
+    "nearby": "पास के अच्छे काम",
+    "volunteering": "स्वैच्छिक कार्य",
+    "helpingNeighbors": "पड़ोसियों की मदद",
+    "gratitude": "कृतज्ञता",
+    "givingBack": "वापस देना",
+    "faithHope": "विश्वास और आशा",
+    "randomKindness": "यादृच्छिक दयालुता"
+  }
+}

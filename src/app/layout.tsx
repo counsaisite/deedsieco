@@ -1,18 +1,16 @@
-import type { Metadata } from 'next';
+import { headers } from 'next/headers';
 import './globals.css';
 
-export const metadata: Metadata = {
-  title: 'Deedsie — See the kindness happening around you',
-  description: 'Join your town. Share a Deed. Make the world brighter.',
-};
-
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const locale = (await headers()).get('x-next-intl-locale') || 'en';
+  const dir = locale === 'ar' ? 'rtl' : 'ltr';
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} dir={dir} suppressHydrationWarning>
       <body className="antialiased min-h-screen">{children}</body>
     </html>
   );

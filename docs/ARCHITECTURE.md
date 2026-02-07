@@ -30,11 +30,21 @@
   createdAt: timestamp,
   updatedAt: timestamp,
   
-  // Location
+  // Location (where user signed in / lives - drives feed & leaderboards)
+  countryCode: string,           // "US" | "GB" | "IN" | etc.
+  countryName: string,
+  regionId: string,             // State, province, or equivalent
+  regionName: string,
   townId: string,
   townName: string,
-  stateId: string,
-  stateName: string,
+  lat: number | null,            // From IP or browser geolocation at sign-in
+  lng: number | null,
+  geoHash: string | null,        // For geo queries
+  timezone: string,              // "America/New_York"
+  lastLocationUpdated: timestamp,
+  
+  // Localization
+  preferredLocale: string,       // "en" | "es" | "hi" | "zh" | etc.
   
   // Power Rank
   totalDeeds: number,           // Verified deeds count
@@ -62,9 +72,11 @@
   type: string,                 // "helping_neighbors" | "volunteering" | etc.
   tags: string[],
   
+  countryCode: string,
   townId: string,
   townName: string,
-  stateId: string,
+  regionId: string,
+  regionName: string,
   
   verified: boolean,
   verificationCount: number,
@@ -104,8 +116,13 @@
 ```js
 {
   name: string,
-  stateId: string,
-  stateName: string,
+  countryCode: string,
+  countryName: string,
+  regionId: string,
+  regionName: string,
+  lat: number | null,
+  lng: number | null,
+  geoHash: string | null,
   deedCount: number,
   userCount: number,
   updatedAt: timestamp
@@ -137,10 +154,11 @@
 
 ### `leaderboards/{scope}_{scopeId}` (denormalized)
 ```js
-// e.g. leaderboards/friends_user123, leaderboards/city_town456
+// e.g. leaderboards/friends_user123, leaderboards/city_town456, leaderboards/country_US
 {
-  scope: "friends" | "city" | "state" | "global",
+  scope: "friends" | "city" | "region" | "country" | "global",
   scopeId: string,
+  countryCode: string | null,    // For country/global leaderboards
   entries: [
     { userId, displayName, photoURL, tier, impactScore, rank },
     ...
@@ -151,7 +169,51 @@
 
 ---
 
-## 3. Point Scoring
+## 3. Location Capture Strategy
+
+**When:** On sign-up, sign-in, and when user updates profile.
+
+**Sources (priority order):**
+1. **User selection** — User explicitly picks town/region (most accurate)
+2. **Browser Geolocation API** — `navigator.geolocation` (requires permission)
+3. **IP geolocation** — Server-side or service (Vercel Geo, MaxMind, ipapi.co) — fallback when no permission
+
+**Flow:**
+- On first sign-in: Try IP geolocation → suggest town → user confirms or changes
+- Optional: "Use my location" button → Browser geolocation → reverse geocode to town
+- Store in `users`: countryCode, regionId, townId, lat, lng, timezone
+
+**Feed & leaderboards:** Always filter/rank by user's `townId` → `regionId` → `countryCode` → global.
+
+---
+
+## 4. Internationalization (i18n) — Global Access
+
+**Goal:** Any user, anywhere, can use Deedsie in their language.
+
+**Approach:** `next-intl` or Next.js locale routing.
+
+**Supported locales (phase 1):**
+- `en` — English (default)
+- `es` — Spanish
+- `hi` — Hindi
+- `zh` — Chinese (Simplified)
+- `pt` — Portuguese
+- `ar` — Arabic (RTL)
+- `fr` — French
+- `de` — German
+
+**Storage:** `users.preferredLocale` — from browser `Accept-Language` or user setting.
+
+**Routing:** `/[locale]/...` e.g. `/es`, `/hi`, `/en`
+
+**Translation files:** `messages/{locale}.json` — all UI strings.
+
+**Deed content:** Stored in creator's language; future: optional translation layer.
+
+---
+
+## 5. Point Scoring
 
 | Action | Points |
 |--------|--------|
@@ -164,7 +226,7 @@
 
 ---
 
-## 4. Tier Structure (Reference)
+## 6. Tier Structure (Reference)
 
 | Level | Name | Group |
 |-------|------|-------|
@@ -183,7 +245,7 @@
 
 ---
 
-## 5. Feed Prioritization (Phased)
+## 7. Feed Prioritization (Phased)
 
 - **MVP:** Local town first (geo + time)
 - **v2:** Add friends' deeds
@@ -191,7 +253,7 @@
 
 ---
 
-## 6. Auth Providers
+## 8. Auth Providers
 
 - Google ✓
 - Apple ✓
@@ -200,7 +262,7 @@
 
 ---
 
-## 7. Cloud Functions (Future)
+## 9. Cloud Functions (Future)
 
 - `onDeedCreated` → update user totalDeeds, impactScore, streak, tier
 - `onReactionCreated` → update deed counts, creator impactScore
@@ -209,7 +271,7 @@
 
 ---
 
-## 8. Security Rules Policy
+## 10. Security Rules Policy
 
 - Users can read/write own `users` doc
 - Deeds: create (own), read (public), update (own)
