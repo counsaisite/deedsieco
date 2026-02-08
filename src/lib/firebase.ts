@@ -11,7 +11,7 @@ const firebaseConfig = {
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
-  // measurementId omitted - triggers firebase.googleapis.com fetch that gets 403 with API restrictions
+  measurementId: undefined, // Disable Analytics to avoid firebase.googleapis.com/webConfig 403
 };
 
 const isConfigured = firebaseConfig.apiKey && firebaseConfig.projectId;
