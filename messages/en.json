@@ -5,6 +5,17 @@
     "continueGoogle": "Continue with Google",
     "continueApple": "Continue with Apple",
     "signInEmail": "Sign in with email",
+    "createAccountButton": "Create account",
+    "emailPlaceholder": "Email",
+    "passwordPlaceholder": "Password",
+    "confirmPasswordPlaceholder": "Confirm password",
+    "passwordsDoNotMatch": "Passwords do not match.",
+    "passwordTooShort": "Password must be at least 6 characters.",
+    "needAccount": "Need an account? Create one",
+    "haveAccount": "Already have an account? Sign in",
+    "forgotPassword": "Forgot password?",
+    "enterEmailForReset": "Enter your email above first.",
+    "resetEmailSent": "Reset link sent! Check your email.",
     "discoveryTitle": "Explore kindness in your community",
     "socialProof": "{count} Deeds shared this week across {towns} towns.",
     "ctaLine1": "Kindness starts with one small Deed.",
@@ -29,5 +40,44 @@
     "givingBack": "Giving Back",
     "faithHope": "Faith & Hope",
     "randomKindness": "Random Kindness"
+  },
+  "Profile": {
+    "loading": "Loading...",
+    "signInPrompt": "Sign in to view your profile.",
+    "signIn": "Sign in",
+    "memberSince": "Member since",
+    "deeds": "Deeds",
+    "impact": "Impact",
+    "dayStreak": "Day Streak",
+    "tier": "Tier",
+    "tierProgress": "Progress to next tier",
+    "location": "Location",
+    "myDeeds": "My Deeds",
+    "noDeeds": "You haven't shared any deeds yet.",
+    "shareFirstDeed": "Share your first deed",
+    "account": "Account",
+    "signOut": "Sign out"
+  },
+  "DeedCard": {
+    "verify": "Verify",
+    "verified": "Verified",
+    "follow": "Follow",
+    "following": "Following"
+  },
+  "Feed": {
+    "local": "Local",
+    "friends": "Friends"
+  },
+  "Leaderboard": {
+    "loading": "Loading...",
+    "signInPrompt": "Sign in to view the leaderboard.",
+    "signIn": "Sign in",
+    "town": "Town",
+    "country": "Country",
+    "title": "Top kindness",
+    "yourTown": "Your town",
+    "yourCountry": "Your country",
+    "impact": "Impact",
+    "noEntries": "No entries yet. Share deeds to see rankings!"
   }
 }

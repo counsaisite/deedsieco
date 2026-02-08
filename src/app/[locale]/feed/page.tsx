@@ -22,9 +22,14 @@ export default async function FeedPage({ params }: Props) {
           <Image src="/logo.png" alt="Deedsie" width={32} height={32} className="rounded-full sm:w-9 sm:h-9" />
           <span className="text-lg sm:text-xl font-bold text-slate-900 dark:text-white">Deedsie</span>
         </Link>
-        <Link href="/profile" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
-          Profile
-        </Link>
+        <div className="flex gap-3">
+          <Link href="/leaderboard" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
+            Leaderboard
+          </Link>
+          <Link href="/profile" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
+            Profile
+          </Link>
+        </div>
       </header>
 
       <main className="flex-1 px-4 sm:px-6 py-6 max-w-2xl mx-auto w-full">

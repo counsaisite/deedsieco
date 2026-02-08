@@ -5,6 +5,14 @@
     "continueGoogle": "Continuar com Google",
     "continueApple": "Continuar com Apple",
     "signInEmail": "Entrar com e-mail",
+    "createAccountButton": "Criar conta",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Senha",
+    "confirmPasswordPlaceholder": "Confirmar senha",
+    "passwordsDoNotMatch": "As senhas não coincidem.",
+    "passwordTooShort": "A senha deve ter pelo menos 6 caracteres.",
+    "needAccount": "Precisa de conta? Criar uma",
+    "haveAccount": "Já tem conta? Entrar",
     "discoveryTitle": "Explore a bondade na sua comunidade",
     "socialProof": "{count} Boas Ações compartilhadas esta semana em {towns} cidades.",
     "ctaLine1": "A bondade começa com uma pequena Boa Ação.",
@@ -29,5 +37,22 @@
     "givingBack": "Retribuir",
     "faithHope": "Fé e esperança",
     "randomKindness": "Bondade aleatória"
+  },
+  "Profile": {
+    "loading": "Carregando...",
+    "signInPrompt": "Entre para ver seu perfil.",
+    "signIn": "Entrar",
+    "memberSince": "Membro desde",
+    "deeds": "Boas Ações",
+    "impact": "Impacto",
+    "dayStreak": "Sequência de dias",
+    "tier": "Nível",
+    "tierProgress": "Progresso para o próximo nível",
+    "location": "Localização",
+    "myDeeds": "Minhas Boas Ações",
+    "noDeeds": "Você ainda não compartilhou nenhuma boa ação.",
+    "shareFirstDeed": "Compartilhe sua primeira boa ação",
+    "account": "Conta",
+    "signOut": "Sair"
   }
 }

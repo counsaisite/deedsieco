@@ -7,7 +7,11 @@ service cloud.firestore {
     match /deeds/{deedId} {
       allow read: if true;
       allow create: if request.auth != null;
-      allow update, delete: if request.auth != null && request.auth.uid == resource.data.creatorId;
+      allow delete: if request.auth != null && request.auth.uid == resource.data.creatorId;
+      allow update: if request.auth != null && (
+        request.auth.uid == resource.data.creatorId ||
+        request.resource.data.diff(resource.data).affectedKeys().hasOnly(['reactionCount', 'inspiredCount', 'verificationCount', 'verified', 'updatedAt'])
+      );
     }
     match /reactions/{reactionId} {
       allow read: if true;
@@ -16,7 +20,14 @@ service cloud.firestore {
     }
     match /verifications/{verificationId} {
       allow read: if true;
-      allow create: if request.auth != null;
+      allow create: if request.auth != null
+        && exists(/databases/$(database)/documents/deeds/$(request.resource.data.deedId))
+        && get(/databases/$(database)/documents/deeds/$(request.resource.data.deedId)).data.creatorId != request.auth.uid;
+    }
+    match /follows/{followId} {
+      allow read: if true;
+      allow create: if request.auth != null && request.resource.data.followerId == request.auth.uid;
+      allow delete: if request.auth != null && resource.data.followerId == request.auth.uid;
     }
     match /towns/{townId} {
       allow read: if true;

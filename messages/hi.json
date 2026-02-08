@@ -5,6 +5,14 @@
     "continueGoogle": "Google से जारी रखें",
     "continueApple": "Apple से जारी रखें",
     "signInEmail": "ईमेल से साइन इन करें",
+    "createAccountButton": "खाता बनाएं",
+    "emailPlaceholder": "ईमेल",
+    "passwordPlaceholder": "पासवर्ड",
+    "confirmPasswordPlaceholder": "पासवर्ड की पुष्टि करें",
+    "passwordsDoNotMatch": "पासवर्ड मेल नहीं खाते।",
+    "passwordTooShort": "पासवर्ड कम से कम 6 अक्षरों का होना चाहिए।",
+    "needAccount": "खाता चाहिए? बनाएं",
+    "haveAccount": "पहले से खाता है? साइन इन करें",
     "discoveryTitle": "अपने समुदाय में दयालुता का अन्वेषण करें",
     "socialProof": "इस सप्ताह {towns} शहरों में {count} अच्छे काम साझा किए गए।",
     "ctaLine1": "दयालुता एक छोटे अच्छे काम से शुरू होती है।",
@@ -29,5 +37,22 @@
     "givingBack": "वापस देना",
     "faithHope": "विश्वास और आशा",
     "randomKindness": "यादृच्छिक दयालुता"
+  },
+  "Profile": {
+    "loading": "लोड हो रहा है...",
+    "signInPrompt": "अपना प्रोफ़ाइल देखने के लिए साइन इन करें।",
+    "signIn": "साइन इन",
+    "memberSince": "सदस्य",
+    "deeds": "कर्म",
+    "impact": "प्रभाव",
+    "dayStreak": "दिन की सीरीज़",
+    "tier": "स्तर",
+    "tierProgress": "अगले स्तर की प्रगति",
+    "location": "स्थान",
+    "myDeeds": "मेरे कर्म",
+    "noDeeds": "आपने अभी तक कोई कर्म साझा नहीं किया।",
+    "shareFirstDeed": "अपना पहला कर्म साझा करें",
+    "account": "खाता",
+    "signOut": "साइन आउट"
   }
 }

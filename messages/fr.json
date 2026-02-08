@@ -5,6 +5,14 @@
     "continueGoogle": "Continuer avec Google",
     "continueApple": "Continuer avec Apple",
     "signInEmail": "Se connecter avec e-mail",
+    "createAccountButton": "Créer un compte",
+    "emailPlaceholder": "E-mail",
+    "passwordPlaceholder": "Mot de passe",
+    "confirmPasswordPlaceholder": "Confirmer le mot de passe",
+    "passwordsDoNotMatch": "Les mots de passe ne correspondent pas.",
+    "passwordTooShort": "Le mot de passe doit comporter au moins 6 caractères.",
+    "needAccount": "Besoin d'un compte ? Créer",
+    "haveAccount": "Déjà un compte ? Se connecter",
     "discoveryTitle": "Explorez la bienveillance dans votre communauté",
     "socialProof": "{count} Bonnes Actions partagées cette semaine dans {towns} villes.",
     "ctaLine1": "La bienveillance commence par une petite Bonne Action.",
@@ -29,5 +37,22 @@
     "givingBack": "Rendre",
     "faithHope": "Foi et espérance",
     "randomKindness": "Bienveillance aléatoire"
+  },
+  "Profile": {
+    "loading": "Chargement...",
+    "signInPrompt": "Connectez-vous pour voir votre profil.",
+    "signIn": "Se connecter",
+    "memberSince": "Membre depuis",
+    "deeds": "Bonnes actions",
+    "impact": "Impact",
+    "dayStreak": "Série de jours",
+    "tier": "Niveau",
+    "tierProgress": "Progression vers le niveau suivant",
+    "location": "Emplacement",
+    "myDeeds": "Mes bonnes actions",
+    "noDeeds": "Vous n'avez pas encore partagé de bonnes actions.",
+    "shareFirstDeed": "Partagez votre première bonne action",
+    "account": "Compte",
+    "signOut": "Se déconnecter"
   }
 }

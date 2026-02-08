@@ -84,4 +84,21 @@ export const TIER_COLORS: Record<string, string> = {
   'Beacon': 'from-amber-400 to-amber-600',
   'Inspiration': 'from-amber-400 to-amber-600',
   'Living Legend': 'from-amber-400 to-amber-600',
+  'Kindness Icon': 'from-amber-400 to-amber-600',
+  'Eternal Deedsie': 'from-amber-400 to-amber-600',
 };
+
+// Approximate deeds needed for next tier (from ARCHITECTURE)
+export const TIER_THRESHOLDS: { level: number; name: string; minDeeds: number }[] = [
+  { level: 1, name: 'First Spark', minDeeds: 0 },
+  { level: 2, name: 'Kind Starter', minDeeds: 5 },
+  { level: 3, name: 'Helper', minDeeds: 25 },
+  { level: 4, name: 'Neighbor', minDeeds: 50 },
+  { level: 5, name: 'Community Friend', minDeeds: 100 },
+  { level: 6, name: 'Giver', minDeeds: 200 },
+  { level: 7, name: 'Uplifter', minDeeds: 300 },
+  { level: 8, name: 'City Light', minDeeds: 1000 },
+  { level: 9, name: 'Beacon', minDeeds: 25000 },
+  { level: 10, name: 'Kindness Icon', minDeeds: 1000000 },
+  { level: 11, name: 'Eternal Deedsie', minDeeds: 2000000 },
+];

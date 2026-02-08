@@ -13,9 +13,12 @@ import {
   increment,
   serverTimestamp,
   Timestamp,
+  deleteDoc,
 } from 'firebase/firestore';
 import { db } from './firebase';
 import type { Deed, UserProfile } from '@/types';
+
+export type ReactionType = 'like' | 'inspired';
 
 export async function createUser(
   userId: string,
@@ -115,10 +118,24 @@ export async function createDeed(
   const ref = await addDoc(deedsRef, deedData);
 
   const userRef = doc(db, 'users', creatorId);
+  const userSnap = await getDoc(userRef);
+  const today = new Date().toISOString().split('T')[0];
+  let newStreak = 1;
+  if (userSnap.exists()) {
+    const data = userSnap.data();
+    const last = data?.lastDeedDate || '';
+    const currentStreak = data?.streakDays || 0;
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    const yesterdayStr = yesterday.toISOString().split('T')[0];
+    if (last === today) newStreak = currentStreak;
+    else if (last === yesterdayStr) newStreak = currentStreak + 1;
+  }
   await updateDoc(userRef, {
     totalDeeds: increment(1),
     impactScore: increment(10),
-    lastDeedDate: new Date().toISOString().split('T')[0],
+    lastDeedDate: today,
+    streakDays: newStreak,
     updatedAt: serverTimestamp(),
   });
 
@@ -143,6 +160,30 @@ export async function getDeeds(townId?: string, limitCount = 50): Promise<(Deed 
   return snap.docs.map((d) => ({ id: d.id, ...d.data(), createdAt: d.data().createdAt, updatedAt: d.data().updatedAt })) as (Deed & { id: string })[];
 }
 
+export async function isFollowing(followerId: string, followingId: string): Promise<boolean> {
+  if (!db || followerId === followingId) return false;
+  const followRef = doc(db, 'follows', `${followerId}_${followingId}`);
+  const snap = await getDoc(followRef);
+  return snap.exists();
+}
+
+export async function getDeedsForFriends(userId: string, limitCount = 50): Promise<(Deed & { id: string })[]> {
+  if (!db) return [];
+  const followingIds = await getFollowingIds(userId);
+  const allIds = [userId, ...followingIds];
+  const creatorIds = allIds.filter((id, i) => allIds.indexOf(id) === i).slice(0, 30);
+  if (creatorIds.length === 0) return getDeeds(undefined, limitCount);
+  const deedsRef = collection(db, 'deeds');
+  const q = query(
+    deedsRef,
+    where('creatorId', 'in', creatorIds),
+    orderBy('createdAt', 'desc'),
+    limit(limitCount)
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => ({ id: d.id, ...d.data(), createdAt: d.data().createdAt, updatedAt: d.data().updatedAt })) as (Deed & { id: string })[];
+}
+
 export async function getDeedsByUser(userId: string): Promise<(Deed & { id: string })[]> {
   if (!db) return [];
   const deedsRef = collection(db, 'deeds');
@@ -154,4 +195,133 @@ export async function getDeedsByUser(userId: string): Promise<(Deed & { id: stri
   );
   const snap = await getDocs(q);
   return snap.docs.map((d) => ({ id: d.id, ...d.data(), createdAt: d.data().createdAt, updatedAt: d.data().updatedAt })) as (Deed & { id: string })[];
+}
+
+export function getReactionId(deedId: string, userId: string, type: ReactionType): string {
+  return `${deedId}_${userId}_${type}`;
+}
+
+export async function addReaction(deedId: string, userId: string, type: ReactionType): Promise<boolean> {
+  if (!db) return false;
+  const reactionId = getReactionId(deedId, userId, type);
+  const reactionRef = doc(db, 'reactions', reactionId);
+  const existing = await getDoc(reactionRef);
+  if (existing.exists()) return false;
+
+  const deedRef = doc(db, 'deeds', deedId);
+  const field = type === 'like' ? 'reactionCount' : 'inspiredCount';
+  await setDoc(reactionRef, { deedId, userId, type, createdAt: serverTimestamp() });
+  await updateDoc(deedRef, { [field]: increment(1), updatedAt: serverTimestamp() });
+  return true;
+}
+
+export async function removeReaction(deedId: string, userId: string, type: ReactionType): Promise<boolean> {
+  if (!db) return false;
+  const reactionId = getReactionId(deedId, userId, type);
+  const reactionRef = doc(db, 'reactions', reactionId);
+  const existing = await getDoc(reactionRef);
+  if (!existing.exists()) return false;
+
+  const deedRef = doc(db, 'deeds', deedId);
+  const field = type === 'like' ? 'reactionCount' : 'inspiredCount';
+  await deleteDoc(reactionRef);
+  await updateDoc(deedRef, { [field]: increment(-1), updatedAt: serverTimestamp() });
+  return true;
+}
+
+export async function getMyReactions(deedId: string, userId: string): Promise<ReactionType[]> {
+  if (!db) return [];
+  const types: ReactionType[] = ['like', 'inspired'];
+  const result: ReactionType[] = [];
+  for (const type of types) {
+    const reactionRef = doc(db, 'reactions', getReactionId(deedId, userId, type));
+    const snap = await getDoc(reactionRef);
+    if (snap.exists()) result.push(type);
+  }
+  return result;
+}
+
+export async function addVerification(deedId: string, verifierId: string): Promise<boolean> {
+  if (!db) return false;
+  const verificationId = `${deedId}_${verifierId}`;
+  const verificationRef = doc(db, 'verifications', verificationId);
+  const existing = await getDoc(verificationRef);
+  if (existing.exists()) return false;
+
+  const deedRef = doc(db, 'deeds', deedId);
+  const deedSnap = await getDoc(deedRef);
+  if (!deedSnap.exists() || deedSnap.data()?.creatorId === verifierId) return false;
+
+  await setDoc(verificationRef, { deedId, verifierId, createdAt: serverTimestamp() });
+  await updateDoc(deedRef, {
+    verificationCount: increment(1),
+    verified: true,
+    updatedAt: serverTimestamp(),
+  });
+  return true;
+}
+
+export async function hasVerified(deedId: string, userId: string): Promise<boolean> {
+  if (!db) return false;
+  const verificationRef = doc(db, 'verifications', `${deedId}_${userId}`);
+  const snap = await getDoc(verificationRef);
+  return snap.exists();
+}
+
+export async function followUser(followerId: string, followingId: string): Promise<void> {
+  if (!db || followerId === followingId) return;
+  const followId = `${followerId}_${followingId}`;
+  const followRef = doc(db, 'follows', followId);
+  const existing = await getDoc(followRef);
+  if (existing.exists()) return;
+  await setDoc(followRef, { followerId, followingId, createdAt: serverTimestamp() });
+}
+
+export async function unfollowUser(followerId: string, followingId: string): Promise<void> {
+  if (!db) return;
+  const followRef = doc(db, 'follows', `${followerId}_${followingId}`);
+  await deleteDoc(followRef);
+}
+
+export async function getFollowingIds(userId: string): Promise<string[]> {
+  if (!db) return [];
+  const followsRef = collection(db, 'follows');
+  const q = query(followsRef, where('followerId', '==', userId));
+  const snap = await getDocs(q);
+  return snap.docs.map((d) => d.data().followingId);
+}
+
+export type LeaderboardEntry = {
+  userId: string;
+  displayName: string;
+  photoURL: string | null;
+  currentTier: string;
+  impactScore: number;
+  totalDeeds: number;
+  rank: number;
+};
+
+export async function getLeaderboard(scope: 'town' | 'country', scopeId: string, limitCount = 20): Promise<LeaderboardEntry[]> {
+  if (!db) return [];
+  const usersRef = collection(db, 'users');
+  const field = scope === 'town' ? 'townId' : 'countryCode';
+  const q = query(
+    usersRef,
+    where(field, '==', scopeId),
+    orderBy('impactScore', 'desc'),
+    limit(limitCount)
+  );
+  const snap = await getDocs(q);
+  return snap.docs.map((d, i) => {
+    const data = d.data();
+    return {
+      userId: d.id,
+      displayName: data.displayName || 'Anonymous',
+      photoURL: data.photoURL || null,
+      currentTier: data.currentTier || 'First Spark',
+      impactScore: data.impactScore || 0,
+      totalDeeds: data.totalDeeds || 0,
+      rank: i + 1,
+    };
+  });
 }

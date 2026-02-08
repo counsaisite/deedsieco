@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithPopup, signInWithEmailAndPassword } from 'firebase/auth';
+import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from '@/i18n/navigation';
@@ -10,8 +10,10 @@ import { useTranslations } from 'next-intl';
 export default function SignInButtons() {
   const t = useTranslations('HomePage');
   const router = useRouter();
+  const [mode, setMode] = useState<'signin' | 'signup'>('signin');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
@@ -33,19 +35,33 @@ export default function SignInButtons() {
     }
   }
 
-  async function handleEmailSignIn(e: React.FormEvent) {
+  async function handleEmailSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!auth) {
       setError('Sign-in is not configured. Add Firebase env vars.');
       return;
     }
+    if (mode === 'signup') {
+      if (password !== confirmPassword) {
+        setError(t('passwordsDoNotMatch'));
+        return;
+      }
+      if (password.length < 6) {
+        setError(t('passwordTooShort'));
+        return;
+      }
+    }
     setLoading(true);
     setError('');
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      if (mode === 'signup') {
+        await createUserWithEmailAndPassword(auth, email, password);
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+      }
       router.push('/feed');
     } catch (err: any) {
-      setError(err.message || 'Sign in failed');
+      setError(err.message || (mode === 'signup' ? 'Create account failed' : 'Sign in failed'));
     } finally {
       setLoading(false);
     }
@@ -67,10 +83,10 @@ export default function SignInButtons() {
         {t('continueGoogle')}
       </button>
 
-      <form onSubmit={handleEmailSignIn} className="space-y-3">
+      <form onSubmit={handleEmailSubmit} className="space-y-3">
         <input
           type="email"
-          placeholder="Email"
+          placeholder={t('emailPlaceholder')}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
@@ -78,18 +94,57 @@ export default function SignInButtons() {
         />
         <input
           type="password"
-          placeholder="Password"
+          placeholder={t('passwordPlaceholder')}
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          minLength={mode === 'signup' ? 6 : undefined}
           className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white min-h-[48px]"
         />
+        {mode === 'signup' && (
+          <input
+            type="password"
+            placeholder={t('confirmPasswordPlaceholder')}
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+            required
+            minLength={6}
+            className="w-full px-4 py-3 rounded-lg border border-slate-300 dark:border-slate-600 bg-white dark:bg-slate-800 text-slate-900 dark:text-white min-h-[48px]"
+          />
+        )}
         <button
           type="submit"
           disabled={loading}
           className="w-full py-3.5 rounded-lg border border-slate-300 dark:border-slate-600 hover:border-slate-400 dark:hover:border-slate-500 text-slate-700 dark:text-slate-300 font-medium transition min-h-[48px] disabled:opacity-50"
         >
-          {t('signInEmail')}
+          {mode === 'signup' ? t('createAccountButton') : t('signInEmail')}
+        </button>
+        {mode === 'signin' && (
+          <button
+            type="button"
+            onClick={async () => {
+              if (!auth || !email) { setError(t('enterEmailForReset')); return; }
+              setLoading(true); setError('');
+              try {
+                await sendPasswordResetEmail(auth, email);
+                setError(t('resetEmailSent'));
+              } catch (err: any) {
+                setError(err.message || 'Failed to send reset email');
+              } finally {
+                setLoading(false);
+              }
+            }}
+            className="w-full text-sm text-blue-600 dark:text-blue-400 hover:underline"
+          >
+            {t('forgotPassword')}
+          </button>
+        )}
+        <button
+          type="button"
+          onClick={() => { setMode(mode === 'signin' ? 'signup' : 'signin'); setError(''); setConfirmPassword(''); }}
+          className="w-full text-sm text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white"
+        >
+          {mode === 'signin' ? t('needAccount') : t('haveAccount')}
         </button>
       </form>
 

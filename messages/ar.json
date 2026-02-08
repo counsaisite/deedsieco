@@ -5,6 +5,14 @@
     "continueGoogle": "المتابعة مع Google",
     "continueApple": "المتابعة مع Apple",
     "signInEmail": "تسجيل الدخول بالبريد الإلكتروني",
+    "createAccountButton": "إنشاء حساب",
+    "emailPlaceholder": "البريد الإلكتروني",
+    "passwordPlaceholder": "كلمة المرور",
+    "confirmPasswordPlaceholder": "تأكيد كلمة المرور",
+    "passwordsDoNotMatch": "كلمات المرور غير متطابقة.",
+    "passwordTooShort": "يجب أن تكون كلمة المرور 6 أحرف على الأقل.",
+    "needAccount": "تحتاج حساباً؟ إنشاء واحد",
+    "haveAccount": "لديك حساب بالفعل؟ تسجيل الدخول",
     "discoveryTitle": "استكشف اللطف في مجتمعك",
     "socialProof": "{count} أعمال صالحة تم مشاركتها هذا الأسبوع في {towns} مدن.",
     "ctaLine1": "اللطف يبدأ بعمل صالح صغير واحد.",
@@ -29,5 +37,22 @@
     "givingBack": "رد الجميل",
     "faithHope": "الإيمان والأمل",
     "randomKindness": "لطف عشوائي"
+  },
+  "Profile": {
+    "loading": "جاري التحميل...",
+    "signInPrompt": "سجّل الدخول لعرض ملفك الشخصي.",
+    "signIn": "تسجيل الدخول",
+    "memberSince": "عضو منذ",
+    "deeds": "الخيريات",
+    "impact": "التأثير",
+    "dayStreak": "سلسلة الأيام",
+    "tier": "المستوى",
+    "tierProgress": "التقدم للمستوى التالي",
+    "location": "الموقع",
+    "myDeeds": "خيرياتي",
+    "noDeeds": "لم تشارك أي خيريات بعد.",
+    "shareFirstDeed": "شارك خيريتك الأولى",
+    "account": "الحساب",
+    "signOut": "تسجيل الخروج"
   }
 }

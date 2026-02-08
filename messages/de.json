@@ -5,6 +5,14 @@
     "continueGoogle": "Mit Google fortfahren",
     "continueApple": "Mit Apple fortfahren",
     "signInEmail": "Mit E-Mail anmelden",
+    "createAccountButton": "Konto erstellen",
+    "emailPlaceholder": "E-Mail",
+    "passwordPlaceholder": "Passwort",
+    "confirmPasswordPlaceholder": "Passwort bestätigen",
+    "passwordsDoNotMatch": "Die Passwörter stimmen nicht überein.",
+    "passwordTooShort": "Das Passwort muss mindestens 6 Zeichen haben.",
+    "needAccount": "Konto benötigt? Erstellen",
+    "haveAccount": "Bereits ein Konto? Anmelden",
     "discoveryTitle": "Entdecke die Güte in deiner Gemeinde",
     "socialProof": "{count} gute Taten diese Woche in {towns} Städten geteilt.",
     "ctaLine1": "Güte beginnt mit einer kleinen guten Tat.",
@@ -29,5 +37,22 @@
     "givingBack": "Zurückgeben",
     "faithHope": "Glaube und Hoffnung",
     "randomKindness": "Zufällige Güte"
+  },
+  "Profile": {
+    "loading": "Laden...",
+    "signInPrompt": "Melden Sie sich an, um Ihr Profil zu sehen.",
+    "signIn": "Anmelden",
+    "memberSince": "Mitglied seit",
+    "deeds": "Taten",
+    "impact": "Impact",
+    "dayStreak": "Tage-Serie",
+    "tier": "Stufe",
+    "tierProgress": "Fortschritt zur nächsten Stufe",
+    "location": "Standort",
+    "myDeeds": "Meine Taten",
+    "noDeeds": "Sie haben noch keine Taten geteilt.",
+    "shareFirstDeed": "Teilen Sie Ihre erste Tat",
+    "account": "Konto",
+    "signOut": "Abmelden"
   }
 }

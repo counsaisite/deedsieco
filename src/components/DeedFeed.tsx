@@ -2,23 +2,28 @@
 
 import { useEffect, useState } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
-import { getDeeds } from '@/lib/firestore';
+import { getDeeds, getDeedsForFriends } from '@/lib/firestore';
 import DeedCard from './DeedCard';
 import PostDeedForm from './PostDeedForm';
 import { Link } from '@/i18n/navigation';
 import type { Deed } from '@/types';
+import { useTranslations } from 'next-intl';
 
 export default function DeedFeed() {
+  const t = useTranslations('Feed');
   const { user, loading: authLoading } = useAuth();
   const [deeds, setDeeds] = useState<(Deed & { id: string })[]>([]);
   const [loading, setLoading] = useState(true);
   const [deedAdded, setDeedAdded] = useState(0);
+  const [feedMode, setFeedMode] = useState<'local' | 'friends'>('local');
 
   useEffect(() => {
     async function load() {
       setLoading(true);
       try {
-        const list = await getDeeds();
+        const list = feedMode === 'friends' && user
+          ? await getDeedsForFriends(user.uid)
+          : await getDeeds();
         setDeeds(list);
       } catch (err) {
         console.error(err);
@@ -27,7 +32,7 @@ export default function DeedFeed() {
       }
     }
     load();
-  }, [deedAdded]);
+  }, [deedAdded, feedMode, user]);
 
   if (authLoading) {
     return (
@@ -50,6 +55,30 @@ export default function DeedFeed() {
 
   return (
     <div className="space-y-6">
+      <div className="flex gap-2">
+        <button
+          type="button"
+          onClick={() => setFeedMode('local')}
+          className={`flex-1 py-3 rounded-lg font-medium min-h-[44px] transition ${
+            feedMode === 'local'
+              ? 'bg-blue-600 text-white'
+              : 'border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300'
+          }`}
+        >
+          {t('local')}
+        </button>
+        <button
+          type="button"
+          onClick={() => setFeedMode('friends')}
+          className={`flex-1 py-3 rounded-lg font-medium min-h-[44px] transition ${
+            feedMode === 'friends'
+              ? 'bg-blue-600 text-white'
+              : 'border border-slate-300 dark:border-slate-600 text-slate-700 dark:text-slate-300'
+          }`}
+        >
+          {t('friends')}
+        </button>
+      </div>
       <PostDeedForm onSuccess={() => setDeedAdded((n) => n + 1)} />
       {loading ? (
         <div className="py-12 text-center text-slate-500">Loading deeds...</div>

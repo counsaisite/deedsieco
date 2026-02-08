@@ -2,7 +2,7 @@ import { setRequestLocale } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import Image from 'next/image';
 import { routing } from '@/i18n/routing';
-import ProfileView from '@/components/ProfileView';
+import LeaderboardView from '@/components/LeaderboardView';
 import Footer from '@/components/Footer';
 
 type Props = { params: Promise<{ locale: string }> };
@@ -11,7 +11,7 @@ export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
 
-export default async function ProfilePage({ params }: Props) {
+export default async function LeaderboardPage({ params }: Props) {
   const { locale } = await params;
   setRequestLocale(locale);
 
@@ -26,14 +26,14 @@ export default async function ProfilePage({ params }: Props) {
           <Link href="/feed" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
             Feed
           </Link>
-          <Link href="/leaderboard" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
-            Leaderboard
+          <Link href="/profile" className="text-slate-600 dark:text-slate-300 font-medium py-2 px-3 min-h-[44px] flex items-center">
+            Profile
           </Link>
         </div>
       </header>
 
-      <main className="flex-1 px-4 sm:px-6 py-6 sm:py-8 max-w-2xl mx-auto w-full">
-        <ProfileView />
+      <main className="flex-1 px-4 sm:px-6 py-6 max-w-2xl mx-auto w-full">
+        <LeaderboardView />
       </main>
       <Footer />
     </div>

@@ -5,6 +5,14 @@
     "continueGoogle": "使用 Google 继续",
     "continueApple": "使用 Apple 继续",
     "signInEmail": "使用邮箱登录",
+    "createAccountButton": "创建账户",
+    "emailPlaceholder": "邮箱",
+    "passwordPlaceholder": "密码",
+    "confirmPasswordPlaceholder": "确认密码",
+    "passwordsDoNotMatch": "两次输入的密码不一致。",
+    "passwordTooShort": "密码至少需要6个字符。",
+    "needAccount": "没有账户？创建账户",
+    "haveAccount": "已有账户？登录",
     "discoveryTitle": "探索你社区的善举",
     "socialProof": "本周在 {towns} 个城镇分享了 {count} 个善行。",
     "ctaLine1": "善意从一件小小的善行开始。",
@@ -29,5 +37,22 @@
     "givingBack": "回馈",
     "faithHope": "信仰与希望",
     "randomKindness": "随机善举"
+  },
+  "Profile": {
+    "loading": "加载中...",
+    "signInPrompt": "登录以查看您的个人资料。",
+    "signIn": "登录",
+    "memberSince": "加入于",
+    "deeds": "善举",
+    "impact": "影响",
+    "dayStreak": "连续天数",
+    "tier": "等级",
+    "tierProgress": "下一等级进度",
+    "location": "位置",
+    "myDeeds": "我的善举",
+    "noDeeds": "您还没有分享任何善举。",
+    "shareFirstDeed": "分享您的第一个善举",
+    "account": "账户",
+    "signOut": "退出登录"
   }
 }
