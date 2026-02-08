@@ -3,9 +3,17 @@ import { getAuth, Auth } from 'firebase/auth';
 import { getFirestore, Firestore } from 'firebase/firestore';
 
 const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID || 'deedsie';
+// authDomain MUST be {projectId}.firebaseapp.com for signInWithRedirect - Firebase hosts /__/auth/handler there.
+// If set to deedsie.com, redirect would go to deedsie.com/__/auth/handler and 404 (our app doesn't have that route).
+const authDomainEnv = process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN;
+const authDomain =
+  authDomainEnv && (authDomainEnv.includes('firebaseapp.com') || authDomainEnv.includes('web.app'))
+    ? authDomainEnv
+    : `${projectId}.firebaseapp.com`;
+
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
-  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN || `${projectId}.firebaseapp.com`,
+  authDomain,
   databaseURL: process.env.NEXT_PUBLIC_FIREBASE_DATABASE_URL,
   projectId,
   storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
