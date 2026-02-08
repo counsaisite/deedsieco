@@ -1,24 +1,22 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithPopup } from 'firebase/auth';
+import { signInWithRedirect } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
-import { useRouter } from '@/i18n/navigation';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 
 export default function HeroAuthButtons() {
   const t = useTranslations('HomePage');
-  const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   async function handleGoogle() {
     if (!auth) return;
     setLoading(true);
     try {
-      await signInWithPopup(auth, new GoogleAuthProvider());
-      router.push('/feed');
+      await signInWithRedirect(auth, new GoogleAuthProvider());
+      // Page navigates away to Google; on return, AuthContext handles getRedirectResult
     } catch {
       setLoading(false);
     }

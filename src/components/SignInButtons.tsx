@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { signInWithPopup, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { signInWithRedirect, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
 import { GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '@/lib/firebase';
 import { useRouter } from '@/i18n/navigation';
@@ -26,11 +26,10 @@ export default function SignInButtons() {
     setError('');
     try {
       const provider = new GoogleAuthProvider();
-      await signInWithPopup(auth, provider);
-      router.push('/feed');
+      await signInWithRedirect(auth, provider);
+      // Page navigates away to Google; on return, AuthContext handles getRedirectResult
     } catch (err: any) {
       setError(err.message || 'Sign in failed');
-    } finally {
       setLoading(false);
     }
   }
